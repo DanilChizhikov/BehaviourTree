@@ -1,0 +1,16 @@
+{
+    "name": "BehaviourTree.Runtime",
+    "rootNamespace": "MbsCore",
+    "references": [
+        "GUID:8ad5acf64324243a1b169b86b6b5e331"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
