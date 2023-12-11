@@ -2,7 +2,8 @@
     "name": "BehaviourTree.Runtime",
     "rootNamespace": "MbsCore",
     "references": [
-        "GUID:8ad5acf64324243a1b169b86b6b5e331"
+        "GUID:8ad5acf64324243a1b169b86b6b5e331",
+        "GUID:b8e24fd1eb19b4226afebb2810e3c19b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
