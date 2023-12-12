@@ -6,15 +6,14 @@ using UnityEngine;
 namespace MbsCore.BehaviourTree.Runtime
 {
     [Serializable]
-    public sealed class BehaviourTransitionConfig<TEntity> : IBehaviourTransitionConfig<TEntity>
-            where TEntity : IBehaviourEntity
+    public sealed class BehaviourTransitionConfig : IBehaviourTransitionConfig
     {
-        [SerializeField] private BehaviourPortConfig<TEntity> _truePort = default;
-        [SerializeField] private BehaviourPortConfig<TEntity> _falsePort = default;
-        [SerializeField] private BehaviourDecisionConfig<TEntity>[] _decision = Array.Empty<BehaviourDecisionConfig<TEntity>>();
+        [SerializeField] private BehaviourPortConfig _truePort = default;
+        [SerializeField] private BehaviourPortConfig _falsePort = default;
+        [SerializeField] private BehaviourDecisionConfig[] _decision = Array.Empty<BehaviourDecisionConfig>();
 
-        public IBehaviourPortConfig<TEntity> TruePort => _truePort;
-        public IBehaviourPortConfig<TEntity> FalsePort => _falsePort;
-        public IReadOnlyList<IBehaviourDecisionConfig<TEntity>> Decisions => _decision;
+        public IBehaviourPortConfig TruePort => _truePort;
+        public IBehaviourPortConfig FalsePort => _falsePort;
+        public IReadOnlyList<IBehaviourDecisionConfig> Decisions => _decision;
     }
 }

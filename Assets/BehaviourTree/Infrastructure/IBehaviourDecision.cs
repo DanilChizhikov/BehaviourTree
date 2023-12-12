@@ -1,9 +1,9 @@
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourDecision<TEntity> where TEntity : IBehaviourEntity
+    public interface IBehaviourDecision
     {
-        void Enter(TEntity entity);
-        bool GetDecision(TEntity entity);
-        void Exit(TEntity entity);
+        void Enter();
+        bool GetDecision();
+        void Exit();
     }
 }

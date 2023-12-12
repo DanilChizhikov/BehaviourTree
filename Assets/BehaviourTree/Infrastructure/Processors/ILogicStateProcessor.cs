@@ -1,5 +1,4 @@
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface ILogicStateProcessor<TEntity> : IBehaviourStateProcessor<IBehaviourLogicState<TEntity>, TEntity>
-            where TEntity : IBehaviourEntity { }
+    public interface ILogicStateProcessor : IBehaviourStateProcessor<IBehaviourLogicState> { }
 }

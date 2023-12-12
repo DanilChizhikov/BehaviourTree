@@ -5,11 +5,10 @@ using UnityEngine;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourForkStateConfig<TEntity> : BehaviourStateConfig<TEntity>, IBehaviourForkStateConfig<TEntity>
-            where TEntity : IBehaviourEntity
+    public abstract class BehaviourForkStateConfig : BehaviourStateConfig, IBehaviourForkStateConfig
     {
-        [SerializeField] private BehaviourForkConfig<TEntity>[] _forks = Array.Empty<BehaviourForkConfig<TEntity>>();
+        [SerializeField] private BehaviourForkConfig[] _forks = Array.Empty<BehaviourForkConfig>();
 
-        public IReadOnlyList<IBehaviourForkConfig<TEntity>> ForkInfos => _forks;
+        public IReadOnlyList<IBehaviourForkConfig> ForkInfos => _forks;
     }
 }

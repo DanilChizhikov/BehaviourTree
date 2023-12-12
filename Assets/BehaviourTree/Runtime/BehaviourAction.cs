@@ -2,9 +2,8 @@ using MbsCore.BehaviourTree.Infrastructure;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourAction<TConfig, TEntity> : IBehaviourAction<TEntity>
-            where TConfig : IBehaviourActionConfig<TEntity>
-            where TEntity : IBehaviourEntity
+    public abstract class BehaviourAction<TConfig> : IBehaviourAction
+            where TConfig : IBehaviourActionConfig
     {
         protected TConfig Config { get; }
         
@@ -13,8 +12,8 @@ namespace MbsCore.BehaviourTree.Runtime
             Config = config;
         }
         
-        public abstract void Enter(TEntity entity);
-        public abstract void Processing(TEntity entity);
-        public abstract void Exit(TEntity entity);
+        public abstract void Enter();
+        public abstract void Processing();
+        public abstract void Exit();
     }
 }

@@ -1,9 +1,9 @@
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourAction<TEntity>
+    public interface IBehaviourAction
     {
-        void Enter(TEntity entity);
-        void Processing(TEntity entity);
-        void Exit(TEntity entity);
+        void Enter();
+        void Processing();
+        void Exit();
     }
 }

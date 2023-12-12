@@ -1,8 +1,8 @@
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourPortConfig<TEntity> where TEntity : IBehaviourEntity
+    public interface IBehaviourPortConfig
     {
         string Name { get; }
-        IBehaviourStateConfig<TEntity> NextState { get; }
+        IBehaviourStateConfig NextState { get; }
     }
 }

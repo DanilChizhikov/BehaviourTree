@@ -2,8 +2,8 @@ using System;
 
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourStateProcessorService<TEntity> where TEntity : IBehaviourEntity
+    public interface IBehaviourStateProcessorService
     {
-        bool TryGetProcessor(Type stateType, out IBehaviourStateProcessor<IBehaviourState<TEntity>, TEntity> processor);
+        bool TryGetProcessor(Type stateType, out IBehaviourStateProcessor<IBehaviourState> processor);
     }
 }

@@ -1,6 +1,6 @@
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourController<TEntity> where TEntity : IBehaviourEntity
+    public interface IBehaviourController
     {
         bool IsPlaying { get; }
         
