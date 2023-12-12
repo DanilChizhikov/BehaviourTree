@@ -71,7 +71,7 @@ namespace MbsCore.BehaviourTree.Editor
             {
                 if (GUILayout.Button("+", GUILayout.Width(30)))
                 {
-                    NodePort newport = Node.AddDynamicOutput(typeof(Connection), XNode.Node.ConnectionType.Override);
+                    NodePort newport = State.AddDynamicOutput(typeof(Connection), Node.ConnectionType.Override);
                     var port = new BehaviourPortConfig(newport.fieldName, null);
                     forks.Add(new BehaviourForkConfig(port, 0));
                 }
