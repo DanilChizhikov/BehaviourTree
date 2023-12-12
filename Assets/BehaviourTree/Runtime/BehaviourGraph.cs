@@ -53,6 +53,7 @@ namespace MbsCore.BehaviourTree.Runtime
                 return;
             }
             
+            CurrentState.Update();
             if (CurrentState.TryGetNextState(out IBehaviourState nextState))
             {
                 SetCurrentState(nextState);
@@ -74,6 +75,7 @@ namespace MbsCore.BehaviourTree.Runtime
         {
             if (HasState)
             {
+                SetCurrentState(CurrentState);
                 CurrentState.Exit();
             }
             
@@ -82,7 +84,11 @@ namespace MbsCore.BehaviourTree.Runtime
             if (HasState)
             {
                 CurrentState.Enter();
+                StatePostEnter(CurrentState);
             }
         }
+        
+        protected virtual void StatePreExit(IBehaviourState state) { }
+        protected virtual void StatePostEnter(IBehaviourState state) { }
     }
 }

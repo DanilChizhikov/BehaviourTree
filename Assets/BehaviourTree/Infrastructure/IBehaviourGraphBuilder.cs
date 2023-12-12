@@ -1,11 +1,8 @@
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourGraphBuilder<TGraph, TConfig>
-            where TGraph : IBehaviourGraph
-            where TConfig : IBehaviourGraphConfig
+    public interface IBehaviourGraphBuilder
     {
-        IBehaviourGraphBuilder<TGraph, TConfig> SetGraphConfig(TConfig value);
-        TGraph Build();
+        IBehaviourGraph Build();
         void Reset();
     }
 }

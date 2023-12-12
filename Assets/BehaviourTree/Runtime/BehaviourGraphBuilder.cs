@@ -1,36 +1,66 @@
+using System.Collections.Generic;
 using MbsCore.BehaviourTree.Infrastructure;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourGraphBuilder<TGraph, TConfig> : IBehaviourGraphBuilder<TGraph, TConfig>
+    public abstract class BehaviourGraphBuilder<TGraph> : IBehaviourGraphBuilder
             where TGraph : IBehaviourGraph
-            where TConfig : IBehaviourGraphConfig
     {
-        private readonly IBehaviourService _behaviourService;
-
-        protected TConfig GraphConfig { get; private set; }
+        protected IBehaviourService BehaviourService { get; }
 
         public BehaviourGraphBuilder(IBehaviourService behaviourService)
         {
-            _behaviourService = behaviourService;
+            BehaviourService = behaviourService;
         }
-        
-        public IBehaviourGraphBuilder<TGraph, TConfig> SetGraphConfig(TConfig value)
+
+        public IBehaviourGraph Build() => GetGraph();
+
+        public abstract void Reset();
+
+        protected abstract TGraph GetGraph();
+    }
+
+    public abstract class BehaviourGraphBuilder<TGraph, TConfig> : BehaviourGraphBuilder<TGraph>
+            where TGraph : IBehaviourGraph
+            where TConfig : IBehaviourGraphConfig
+    {
+        protected TConfig Config { get; private set; }
+
+        public BehaviourGraphBuilder(IBehaviourService behaviourService) : base(behaviourService) { }
+
+        public BehaviourGraphBuilder<TGraph, TConfig> SetConfig(TConfig config)
         {
-            GraphConfig = value;
+            Config = config;
             return this;
         }
 
-        public TGraph Build()
+        public override void Reset()
         {
-            
+            Config = default;
         }
 
-        public void Reset()
+        protected sealed override TGraph GetGraph()
         {
-            GraphConfig = default;
+            IReadOnlyDictionary<IBehaviourStateConfig,IBehaviourState> stateMap = GetStateMap();
+            IBehaviourState enterState = stateMap[Config.EnterState];
+            return GetGraph(enterState, stateMap.Values);
         }
+
+        protected abstract IBehaviourState CreateState(IBehaviourStateConfig config);
+
+        protected abstract TGraph GetGraph(IBehaviourState enterState, IEnumerable<IBehaviourState> states);
         
-        
+        private IReadOnlyDictionary<IBehaviourStateConfig, IBehaviourState> GetStateMap()
+        {
+            var stateMap = new Dictionary<IBehaviourStateConfig, IBehaviourState>();
+            for (int i = Config.States.Count - 1; i >= 0; i--)
+            {
+                IBehaviourStateConfig stateConfig = Config.States[i];
+                IBehaviourState state = CreateState(stateConfig);
+                stateMap.Add(stateConfig, state);
+            }
+
+            return stateMap;
+        }
     }
 }
