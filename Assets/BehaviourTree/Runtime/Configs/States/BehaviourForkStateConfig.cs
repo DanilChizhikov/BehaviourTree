@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourForkStateConfig : BehaviourStateConfig
+    public abstract partial class BehaviourForkStateConfig : BehaviourStateConfig
     {
         [SerializeField] private BehaviourForkConfig[] _forks = Array.Empty<BehaviourForkConfig>();
 

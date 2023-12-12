@@ -15,5 +15,13 @@ namespace MbsCore.BehaviourTree.Runtime
         public IBehaviourPortConfig TruePort => _truePort;
         public IBehaviourPortConfig FalsePort => _falsePort;
         public IReadOnlyList<IBehaviourDecisionConfig> Decisions => _decision;
+
+        public BehaviourTransitionConfig(BehaviourPortConfig truePort, BehaviourPortConfig falsePort,
+                                         BehaviourDecisionConfig[] decision)
+        {
+            _truePort = truePort;
+            _falsePort = falsePort;
+            _decision = decision;
+        }
     }
 }

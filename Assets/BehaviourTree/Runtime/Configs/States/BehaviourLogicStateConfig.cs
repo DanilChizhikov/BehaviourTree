@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourLogicStateConfig : BehaviourStateConfig
+    public abstract partial class BehaviourLogicStateConfig : BehaviourStateConfig
     {
         [SerializeField] private BehaviourActionConfig[] _actions = Array.Empty<BehaviourActionConfig>();
         [SerializeField] private BehaviourTransitionConfig[] _transitions = Array.Empty<BehaviourTransitionConfig>();
