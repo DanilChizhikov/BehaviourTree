@@ -6,14 +6,14 @@ using UnityEngine;
 namespace MbsCore.BehaviourTree.Runtime
 {
     [Serializable]
-    public sealed class BehaviourForkConfig<TEntity> : IBehaviourForkConfig<TEntity> where TEntity : IBehaviourEntity
+    public sealed class BehaviourForkConfig : IBehaviourForkConfig
     {
-        [SerializeField] private BehaviourPortConfig<TEntity> _port = default;
+        [SerializeField] private BehaviourPortConfig _port = default;
         [SerializeField, Min(1)] private int _weight = 1;
-        [SerializeField] private BehaviourDecisionConfig<TEntity>[] _decisions = Array.Empty<BehaviourDecisionConfig<TEntity>>();
+        [SerializeField] private BehaviourDecisionConfig[] _decisions = Array.Empty<BehaviourDecisionConfig>();
 
-        public IBehaviourPortConfig<TEntity> Port => _port;
+        public IBehaviourPortConfig Port => _port;
         public int Weight => _weight;
-        public IReadOnlyList<IBehaviourDecisionConfig<TEntity>> Decisions => _decisions;
+        public IReadOnlyList<IBehaviourDecisionConfig> Decisions => _decisions;
     }
 }

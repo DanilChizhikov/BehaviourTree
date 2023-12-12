@@ -6,13 +6,12 @@ using XNode;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourGraphConfig<TEntity> : NodeGraph, IBehaviourGraphConfig<TEntity>
-            where TEntity : IBehaviourEntity
+    public abstract class BehaviourGraphConfig : NodeGraph, IBehaviourGraphConfig
     {
-        [SerializeField] private BehaviourStateConfig<TEntity> _enterState = default;
-        [SerializeField] private BehaviourStateConfig<TEntity>[] _states = Array.Empty<BehaviourStateConfig<TEntity>>();
+        [SerializeField] private BehaviourStateConfig _enterState = default;
+        [SerializeField] private BehaviourStateConfig[] _states = Array.Empty<BehaviourStateConfig>();
 
-        public IBehaviourStateConfig<TEntity> EnterState => _enterState;
-        public IReadOnlyList<IBehaviourStateConfig<TEntity>> States => _states;
+        public IBehaviourStateConfig EnterState => _enterState;
+        public IReadOnlyList<IBehaviourStateConfig> States => _states;
     }
 }

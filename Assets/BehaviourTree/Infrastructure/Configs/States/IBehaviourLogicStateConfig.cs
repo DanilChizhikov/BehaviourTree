@@ -2,10 +2,9 @@ using System.Collections.Generic;
 
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourLogicStateConfig<TEntity> : IBehaviourStateConfig<TEntity>
-            where TEntity : IBehaviourEntity
+    public interface IBehaviourLogicStateConfig : IBehaviourStateConfig
     {
-        IReadOnlyList<IBehaviourActionConfig<TEntity>> Actions { get; }
-        IReadOnlyList<IBehaviourTransitionConfig<TEntity>> Transitions { get; }
+        IReadOnlyList<IBehaviourActionConfig> Actions { get; }
+        IReadOnlyList<IBehaviourTransitionConfig> Transitions { get; }
     }
 }

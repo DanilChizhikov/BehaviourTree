@@ -2,12 +2,10 @@ using System;
 
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourActionFactory<TConfig, TEntity>
-            where TConfig : IBehaviourActionConfig<TEntity>
-            where TEntity : IBehaviourEntity
+    public interface IBehaviourActionFactory<TConfig> where TConfig : IBehaviourActionConfig
     {
         Type ServicedConfigType { get; }
 
-        IBehaviourAction<TEntity> Create(IBehaviourActionConfig<TEntity> config);
+        IBehaviourAction Create(IBehaviourActionConfig config);
     }
 }

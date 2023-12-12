@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourDecisionConfig<TEntity> : ScriptableObject, IBehaviourDecisionConfig<TEntity>
-            where TEntity : IBehaviourEntity
+    public abstract class BehaviourDecisionConfig : ScriptableObject, IBehaviourDecisionConfig
     {
         [SerializeField] private bool _isReverse = false;
 

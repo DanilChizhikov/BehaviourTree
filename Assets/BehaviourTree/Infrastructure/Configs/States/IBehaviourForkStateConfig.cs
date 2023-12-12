@@ -2,9 +2,8 @@ using System.Collections.Generic;
 
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourForkStateConfig<TEntity> : IBehaviourStateConfig<TEntity>
-            where TEntity : IBehaviourEntity
+    public interface IBehaviourForkStateConfig : IBehaviourStateConfig
     {
-        IReadOnlyList<IBehaviourForkConfig<TEntity>> ForkInfos { get; }
+        IReadOnlyList<IBehaviourForkConfig> ForkInfos { get; }
     }
 }

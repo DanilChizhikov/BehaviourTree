@@ -2,10 +2,10 @@ using System.Collections.Generic;
 
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourTransition<TEntity> where TEntity : IBehaviourEntity
+    public interface IBehaviourTransition
     {
-        IBehaviourPort<TEntity> TruePort { get; }
-        IBehaviourPort<TEntity> FalsePort { get; }
-        IReadOnlyList<IBehaviourDecision<TEntity>> Decisions { get; }
+        IBehaviourPort TruePort { get; }
+        IBehaviourPort FalsePort { get; }
+        IReadOnlyList<IBehaviourDecision> Decisions { get; }
     }
 }

@@ -1,8 +1,8 @@
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourFactoryService<TEntity> where TEntity : IBehaviourEntity
+    public interface IBehaviourFactoryService
     {
-        IBehaviourAction<TEntity> CreateAction(IBehaviourActionConfig<TEntity> config);
-        IBehaviourDecision<TEntity> CreateDecision(IBehaviourDecisionConfig<TEntity> config);
+        IBehaviourAction CreateAction(IBehaviourActionConfig config);
+        IBehaviourDecision CreateDecision(IBehaviourDecisionConfig config);
     }
 }

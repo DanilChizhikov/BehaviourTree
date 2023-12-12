@@ -5,13 +5,12 @@ using UnityEngine;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourLogicStateConfig<TEntity> : BehaviourStateConfig<TEntity>, IBehaviourLogicStateConfig<TEntity>
-            where TEntity : IBehaviourEntity
+    public abstract class BehaviourLogicStateConfig : BehaviourStateConfig, IBehaviourLogicStateConfig
     {
-        [SerializeField] private BehaviourActionConfig<TEntity>[] _actions = Array.Empty<BehaviourActionConfig<TEntity>>();
-        [SerializeField] private BehaviourTransitionConfig<TEntity>[] _transitions = Array.Empty<BehaviourTransitionConfig<TEntity>>();
+        [SerializeField] private BehaviourActionConfig[] _actions = Array.Empty<BehaviourActionConfig>();
+        [SerializeField] private BehaviourTransitionConfig[] _transitions = Array.Empty<BehaviourTransitionConfig>();
 
-        public IReadOnlyList<IBehaviourActionConfig<TEntity>> Actions => _actions;
-        public IReadOnlyList<IBehaviourTransitionConfig<TEntity>> Transitions => _transitions;
+        public IReadOnlyList<IBehaviourActionConfig> Actions => _actions;
+        public IReadOnlyList<IBehaviourTransitionConfig> Transitions => _transitions;
     }
 }

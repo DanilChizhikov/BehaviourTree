@@ -1,9 +1,8 @@
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourGraphBuilder<TEntity> where TEntity : IBehaviourEntity
+    public interface IBehaviourGraphBuilder
     {
-        IBehaviourGraphBuilder<TEntity> SetGraphConfig(IBehaviourGraphConfig<TEntity> value);
-        IBehaviourGraphBuilder<TEntity> SetEntity(TEntity value);
-        IBehaviourGraph<TEntity> Build();
+        IBehaviourGraphBuilder SetGraphConfig(IBehaviourGraphConfig value);
+        IBehaviourGraph Build();
     }
 }

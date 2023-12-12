@@ -2,10 +2,10 @@ using System.Collections.Generic;
 
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourFork<TEntity> where TEntity : IBehaviourEntity
+    public interface IBehaviourFork
     {
-        IBehaviourPort<TEntity> Port { get; }
+        IBehaviourPort Port { get; }
         int Weight { get; }
-        IReadOnlyList<IBehaviourDecision<TEntity>> Decisions { get; }
+        IReadOnlyList<IBehaviourDecision> Decisions { get; }
     }
 }
