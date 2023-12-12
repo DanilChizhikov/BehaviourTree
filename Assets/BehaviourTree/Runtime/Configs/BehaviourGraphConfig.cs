@@ -6,7 +6,7 @@ using XNode;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourGraphConfig : NodeGraph, IBehaviourGraphConfig
+    public abstract partial class BehaviourGraphConfig : NodeGraph, IBehaviourGraphConfig
     {
         [SerializeField] private BehaviourStateConfig _enterState = default;
         [SerializeField] private BehaviourStateConfig[] _states = Array.Empty<BehaviourStateConfig>();
