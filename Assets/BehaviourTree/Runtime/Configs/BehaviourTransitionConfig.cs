@@ -6,7 +6,7 @@ using UnityEngine;
 namespace MbsCore.BehaviourTree.Runtime
 {
     [Serializable]
-    public sealed class BehaviourTransitionConfig : IBehaviourTransitionConfig
+    public sealed class BehaviourTransitionConfig
     {
         [SerializeField] private BehaviourPortConfig _truePort = default;
         [SerializeField] private BehaviourPortConfig _falsePort = default;

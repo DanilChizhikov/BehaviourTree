@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.danilchizhikov.extensions": {
+      "version": "https://github.com/DanilChizhikov/Extensions.git?path=Assets/Extensions#0.0.2",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "17b1d58588387205695eb340d045c0e8e4090a3d"
+    },
     "com.github.siccity.xnode": {
       "version": "https://github.com/Siccity/xNode.git",
       "depth": 0,

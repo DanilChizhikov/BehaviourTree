@@ -1,11 +1,7 @@
-using System;
-
 namespace MbsCore.BehaviourTree.Infrastructure
 {
-    public interface IBehaviourActionFactory<TConfig> where TConfig : IBehaviourActionConfig
+    public interface IBehaviourActionFactory : IServiceable
     {
-        Type ServicedConfigType { get; }
-
         IBehaviourAction Create(IBehaviourActionConfig config);
     }
 }
