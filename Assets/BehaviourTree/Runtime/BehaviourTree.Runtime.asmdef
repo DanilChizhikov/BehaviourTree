@@ -3,7 +3,8 @@
     "rootNamespace": "MbsCore",
     "references": [
         "GUID:8ad5acf64324243a1b169b86b6b5e331",
-        "GUID:b8e24fd1eb19b4226afebb2810e3c19b"
+        "GUID:b8e24fd1eb19b4226afebb2810e3c19b",
+        "GUID:bf0956da11227458b825a065927c25ef"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

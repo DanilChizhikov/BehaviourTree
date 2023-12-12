@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using MbsCore.BehaviourTree.Infrastructure;
 using UnityEngine;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourForkStateConfig : BehaviourStateConfig, IBehaviourForkStateConfig
+    public abstract class BehaviourForkStateConfig : BehaviourStateConfig
     {
         [SerializeField] private BehaviourForkConfig[] _forks = Array.Empty<BehaviourForkConfig>();
 
-        public IReadOnlyList<IBehaviourForkConfig> ForkInfos => _forks;
+        public IReadOnlyList<BehaviourForkConfig> ForkInfos => _forks;
     }
 }
