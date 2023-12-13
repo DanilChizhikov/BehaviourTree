@@ -3,7 +3,7 @@ using MbsCore.BehaviourTree.Infrastructure;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public sealed class BehaviourTransition
+    public sealed class BehaviourTransition : IBehaviourTransition
     {
         public IBehaviourPort TruePort { get; }
         public IBehaviourPort FalsePort { get; }

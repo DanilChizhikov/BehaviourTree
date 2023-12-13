@@ -8,9 +8,10 @@ This package shows a variant of the implementation of a behavior tree based on n
 - [Getting Started](#Getting-Started)
     - [Install manually (using .unitypackage)](#Install-manually-(using-.unitypackage))
     - [Install via UPM (using Git URL)](#Install-via-UPM-(using-Git-URL))
-- [Basic Usage](#Basic-Usage)
-    - [Runtime Code](#Runtime-Code)
-    - [Remote Assets](#Remote-Assets)
+- [Project Structure](#Project-Structure)
+    - [Interfaces](#Interfaces)
+- [Runtime](#Runtime)
+    - [Initialize](#Initialize)
 - [License](#License)
 
 ## Getting Started
@@ -35,125 +36,183 @@ UPM should now install the package.
 ## Project Structure
 
 ### Interfaces
-First, you need to initialize the AssetService, this can be done using different methods.
-Here we will show the easiest way, which is not the method that we recommend using!
+
+1. IBehaviourService
 ```csharp
-public class AssetServiceBootstrap : MonoBehaviour
+public interface IBehaviourService
 {
-    private static IAssetService _service;
-
-    public static IAssetService Service => _service;
-
-    private void Awake()
-    {
-        if (_service != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        _service = new AssetService();
-    }
+    IBehaviourState CreateState(IBehaviourStateConfig config);
+    IBehaviourAction CreateAction(IBehaviourActionConfig config);
+    IBehaviourDecision CreateDecision(IBehaviourDecisionConfig config);
 }
 ```
 
-IAssetService allows you to upload assets via their keys or when using AssetRefernce.
-
-For Example:
+2. IBehaviourGraph
 ```csharp
-public sealed class ExampleUsage : MonoBehaviour
+public interface IBehaviourGraph
 {
-    [SerializeField] private AssetReference _reference = default;
-    [SerializeField] private string _assetKey = string.Empty;
+    bool IsPlaying { get; }
     
-    private IAssetService _assetService;
-
-    private GameObject _keyOrigin;
-    private GameObject _referenceOrigin;
-
-    [Inject]
-    public void Construct(IAssetService assetService)
-    {
-        _assetService = assetService;
-    }
-
-    public async UniTask LoadAssetByKeyAsync()
-    {
-        IAssetResponse<GameObject> response = _assetService.LoadAsset<GameObject>(_assetKey);
-        await UniTask.WaitUntil(() => response.IsDone);
-        _keyOrigin = response.Result;
-    }
-    
-    public async UniTask LoadAssetByReferenceAsync()
-    {
-        IAssetResponse<GameObject> response = _assetService.LoadAsset<GameObject>(_reference);
-        await UniTask.WaitUntil(() => response.IsDone);
-        _referenceOrigin = response.Result;
-    }
-
-    private void OnDestroy()
-    {
-        if (_keyOrigin != null)
-        {
-            _assetService.UnloadAsset(_keyOrigin);
-        }
-
-        if (_referenceOrigin != null)
-        {
-            _assetService.UnloadAsset(_referenceOrigin);
-        }
-    }
+    void Enter();
+    void Update();
+    void Exit();
 }
 ```
 
-IAssetResponse:
 ```csharp
-using UnityEngine;
-
-namespace MbsCore.AddressableManagement.Infrastructure
+public interface IBehaviourGraphConfig
 {
-    public interface IAssetResponse
-    {
-        float Progress { get; }
-        bool IsDone { get; }
-    }
-    
-    public interface IAssetResponse<TResult> : IAssetResponse where TResult : Object
-    {
-        TResult Result { get; }
-    }
+    IBehaviourStateConfig EnterState { get; }
+    IReadOnlyList<IBehaviourStateConfig> States { get; }
 }
 ```
 
-### Remote Assets
-
-To download assets remotely, you can use the following methods.
+3. IBehaviourState
 ```csharp
-namespace MbsCore.AddressableManagement.Infrastructure
+public interface IBehaviourState
 {
-    public interface IAssetService
-    {
-        //Returns the size of the bytes required for downloading.
-        Task<long> GetDownloadSizeAsync();
-        //Starts downloading assets and returns a user-friendly interface for tracking progress.
-        IAssetDownloadResponse DownloadAssets();
-    }
+    void Enter();
+    void Update();
+    bool TryGetNextState(out IBehaviourState nextState);
+    void Exit();
 }
 ```
 
-IAssetDownloadResponse:
 ```csharp
-namespace MbsCore.AddressableManagement.Infrastructure
+public interface IBehaviourStateConfig { }
+```
+ - IBehaviourLogicState
+```csharp
+public interface IBehaviourLogicState
 {
-    public interface IAssetDownloadResponse
-    {
-        float Progress { get; }
-        float DownloadMegabytes { get; }
-        float DownloadedMegabytes { get; }
-        bool IsDone { get; }
-    }
+    IReadOnlyList<IBehaviourAction> Actions { get; }
+    IReadOnlyList<IBehaviourTransition> Transitions { get; }
 }
 ```
+
+```csharp
+public interface IBehaviourLogicStateConfig
+{
+    IReadOnlyList<IBehaviourActionConfig> Actions { get; }
+    IReadOnlyList<IBehaviourTransitionConfig> Transitions { get; }
+}
+```
+
+```csharp
+public interface IBehaviourAction
+{
+    void Enter();
+    void Processing();
+    void Exit();
+}
+```
+
+```csharp
+public interface IBehaviourActionConfig { }
+```
+
+```csharp
+public interface IBehaviourTransition
+{
+    IBehaviourPort TruePort { get; }
+    IBehaviourPort FalsePort { get; }
+    IReadOnlyList<IBehaviourDecision> Decisions { get; }
+}
+```
+
+```csharp
+public interface IBehaviourTransitionConfig
+{
+    IBehaviourPortConfig TruePort { get; }
+    IBehaviourPortConfig FalsePort { get; }
+    IReadOnlyList<IBehaviourDecisionConfig> Decisions { get; }
+}
+```
+
+ - IBehaviourForkState
+```csharp
+public interface IBehaviourForkState
+{
+    IReadOnlyList<IBehaviourFork> Forks { get; }
+}
+```
+
+```csharp
+public interface IBehaviourForkStateConfig
+{
+    IReadOnlyList<IBehaviourForkConfig> ForkInfos { get; }
+}
+```
+
+```csharp
+public interface IBehaviourFork
+{
+    IBehaviourPort Port { get; }
+    int Weight { get; }
+    IReadOnlyList<IBehaviourDecision> Decisions { get; }
+}
+```
+
+```csharp
+public interface IBehaviourForkConfig
+{
+    IBehaviourPortConfig Port { get; }
+    int Weight { get; }
+    IReadOnlyList<IBehaviourDecisionConfig> Decisions { get; }
+}
+```
+
+4. IBehaviourPort
+```csharp
+public interface IBehaviourPort
+{
+    IBehaviourState NextState { get; }
+}
+```
+
+```csharp
+public interface IBehaviourPortConfig
+{
+    string Name { get; }
+    IBehaviourStateConfig NextState { get; }
+}
+```
+
+5. Factories
+```csharp
+public interface IBehaviourStateFactory : IServiceable
+{
+    IBehaviourState Create(IBehaviourStateConfig config);
+}
+```
+
+````csharp
+public interface IBehaviourActionFactory : IServiceable
+{
+    IBehaviourAction Create(IBehaviourActionConfig config);
+}
+````
+
+```csharp
+public interface IBehaviourDecisionFactory : IServiceable
+{
+    IBehaviourDecision Create(IBehaviourDecisionConfig config);
+}
+```
+
+6. IBehaviourGraphBuilder
+```csharp
+public interface IBehaviourGraphBuilder
+{
+    IBehaviourGraph Build();
+    void Reset();
+}
+```
+
+## Runtime
+
+### Initialize
+
 
 ## License
 
