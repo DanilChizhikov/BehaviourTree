@@ -6,7 +6,7 @@ using UnityEngine;
 namespace MbsCore.BehaviourTree.Runtime
 {
     [Serializable]
-    public sealed class BehaviourForkConfig : IBehaviourStateConfig
+    public sealed class BehaviourForkConfig : IBehaviourForkConfig
     {
         [SerializeField] private BehaviourPortConfig _port = default;
         [SerializeField, Min(1)] private int _weight = 1;

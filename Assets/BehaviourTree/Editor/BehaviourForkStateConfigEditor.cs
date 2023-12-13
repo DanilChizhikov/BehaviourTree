@@ -16,7 +16,7 @@ namespace MbsCore.BehaviourTree.Editor
         
         protected override void DrawBodyGUI()
         {
-            var forks = new List<BehaviourForkConfig>(State.ForkInfos);
+            var forks = new List<BehaviourForkConfig>(State.EditorForks);
             EditorGUILayout.Space();
             GUIStyle style = new GUIStyle(EditorStyles.boldLabel);
             EditorGUILayout.LabelField("Ports:", style);

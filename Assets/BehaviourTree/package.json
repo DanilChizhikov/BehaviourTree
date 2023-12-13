@@ -1,0 +1,31 @@
+{
+    "name": "com.danilchizhikov.behaviour-tree",
+    "displayName": "Behaviour Tree",
+    "version": "0.0.2",
+    "unity": "2022.3",
+    "dependencies": {
+        "com.github.siccity.xnode": "https://github.com/Siccity/xNode.git",
+        "com.danilchizhikov.extensions": "https://github.com/DanilChizhikov/Extensions.git?path=Assets/Extensions#0.0.2"
+    },
+    "description": "Lightweight Behaviour Tree for Unity Projects.",
+    "keywords": [
+        "BehaviourTree",
+        "Behaviour",
+        "behaviourtree",
+        "behaviour",
+        "Behaviour Tree",
+        "behaviour tree"
+    ],
+    "category": "Tools",
+    "author": "MbsCore",
+    "repository": {
+        "type": "git",
+        "url": "ssh://github.com:DanilChizhikov/BehaviourTree.git",
+        "directory": "com.danilchizhikov.behaviour-tree"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/@DanilChizhikov"
+    },
+    "license": "MIT"
+  }
+  
