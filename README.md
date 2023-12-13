@@ -212,7 +212,8 @@ public interface IBehaviourGraphBuilder
 ## Runtime
 
 ### Initialize
-
+First, you need to initialize the BehaviourService, this can be done using different methods.
+Here we will show the easiest way, which is not the method that we recommend using!
 
 ## License
 
