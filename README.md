@@ -10,8 +10,6 @@ This package shows a variant of the implementation of a behavior tree based on n
     - [Install via UPM (using Git URL)](#Install-via-UPM-(using-Git-URL))
 - [Project Structure](#Project-Structure)
     - [Interfaces](#Interfaces)
-- [Runtime](#Runtime)
-    - [Initialize](#Initialize)
 - [License](#License)
 
 ## Getting Started
@@ -208,12 +206,6 @@ public interface IBehaviourGraphBuilder
     void Reset();
 }
 ```
-
-## Runtime
-
-### Initialize
-First, you need to initialize the BehaviourService, this can be done using different methods.
-Here we will show the easiest way, which is not the method that we recommend using!
 
 ## License
 
