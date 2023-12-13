@@ -3,7 +3,7 @@ using MbsCore.BehaviourTree.Infrastructure;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public sealed class BehaviourFork
+    public sealed class BehaviourFork : IBehaviourFork
     {
         public IBehaviourPort Port { get; }
         public int Weight { get; }
