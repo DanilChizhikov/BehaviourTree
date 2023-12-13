@@ -3,7 +3,7 @@ using MbsCore.BehaviourTree.Infrastructure;
 
 namespace MbsCore.BehaviourTree.Runtime
 {
-    public abstract class BehaviourGraph : IBehaviourGraph
+    public class BehaviourGraph : IBehaviourGraph
     {
         public bool IsPlaying { get; private set; }
         
